@@ -13,6 +13,7 @@ jobs:
           command: |
             pipenv run pytest --version
           name: Run tests
+workflows:
   test:
     jobs:
       - build-and-test
