@@ -1,21 +1,18 @@
 version: 2.1
 
 orbs:
-  python: cimg/3.10
+  python: circleci/python@2.0.3
 
 jobs:
-  test:
-    executor: python/default
+  build-and-test:
+    docker:
+      - image: cimg/python:3.10.4
     steps:
       - checkout
-      - python/install-packages:
-          args: pytest
-          pkg-manager: pipenv
       - run:
           command: |
             pipenv run pytest --version
           name: Run tests
-workflows:
   test:
     jobs:
-      - test
+      - build-and-test
