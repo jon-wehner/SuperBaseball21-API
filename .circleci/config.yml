@@ -12,6 +12,9 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
           docker_layer_caching: true
+      - python/install-packages:
+          args: pytest
+          pkg-manager: pipenv
       - run:
           command: |
             pipenv run pytest --version
