@@ -1,10 +1,17 @@
 import pytest
-from app import app
+from app import create_app
 
 
-@pytest.fixture
-def client():
-    app.config['TESTING'] = True
+@pytest.fixture()
+def app():
+    app = create_app()
+    app.config.update({
+        'TESTING': True
+    })
 
-    with app.app.test_client() as client:
-        yield client
+    yield app
+
+
+@pytest.fixture()
+def client(app):
+    return app.test_client()

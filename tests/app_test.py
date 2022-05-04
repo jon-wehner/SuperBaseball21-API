@@ -1,7 +1,7 @@
-from app import hello
 from . import client
 
 
-def test_hello():
+def test_hello(client):
     result = client.get('/')
-    assert result == 'Hello World'
+    print(result.data)
+    assert result == 'Hello world'
