@@ -9,6 +9,9 @@ jobs:
       - image: cimg/python:3.10.4
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       - run:
           command: |
             pipenv run pytest --version
